@@ -38,10 +38,15 @@ def human_game_setup():
         human_game(lower=1, upper=100, guesses=3)
 
     elif user_input.lower() == 'custom' or user_input.lower() == 'c':
-        low = int(input('What would you like the lower limit to be? > '))
-        high = int(input('What would you like the upper limit to be? > '))
-        guesses = int(input('How many guesses would you like? >'))
-        human_game(low, high, guesses)
+        low = input('What would you like the lower limit to be? > ')
+        high = input('What would you like the upper limit to be? > ')
+        guesses = input('How many guesses would you like? > ')
+        if type(low) == int and type(high) == int and type(guesses) == int:
+            human_game(low, high, guesses)
+        else:
+            print('Input was not expected please use whole numbers')
+    else:
+        print('Input was not expected, please answer the question correctly')
 
 
 def human_game(lower, upper, guesses):
@@ -51,8 +56,13 @@ def human_game(lower, upper, guesses):
 
     while tries != guesses:
         tries += 1
-        user_guess = int(input('> '))
+        user_guess = input('> ')
 
+        if type(user_guess) != int:
+            print('Please enter a hole number')
+            break
+        else:
+            user_guess = int(user_guess)
         if tries == guesses:
             print('Sorry you lost')
 
@@ -75,23 +85,41 @@ def computer_game_setup():
     (C)ustom: User defined (Recommended)
     > ''')
     if user_input.lower() == 'easy' or user_input.lower() == 'e':
-        search_type = int(input('Computer search type, 1 for random, 2 for smart random >'))
-        computer_game(lower=1, upper=100, guesses=10, search_type=search_type)
+        search_type = int(input('Computer search type, 1 for random, 2 for smart random > '))
+        if search_type == 1 or search_type == 2:
+            computer_game(lower=1, upper=100, guesses=3, search_type=search_type)
+        else:
+            print('Use a proper listed value for search type')
 
     elif user_input.lower() == 'medium' or user_input.lower() == 'm':
-        search_type = int(input('Computer search type, 1 for random, 2 for smart random >'))
-        computer_game(lower=1, upper=50, guesses=3, search_type=search_type)
+        search_type = int(input('Computer search type, 1 for random, 2 for smart random > '))
+        if search_type == 1 or search_type == 2:
+            computer_game(lower=1, upper=100, guesses=3, search_type=search_type)
+        else:
+            print('Use a proper listed value for search type')
 
     elif user_input.lower() == 'hard' or user_input.lower() == 'h':
-        search_type = int(input('Computer search type, 1 for random, 2 for smart random >'))
-        computer_game(lower=1, upper=100, guesses=3, search_type=search_type)
+        search_type = int(input('Computer search type, 1 for random, 2 for smart random > '))
+        if search_type == 1 or search_type == 2:
+            computer_game(lower=1, upper=100, guesses=3, search_type=search_type)
+        else:
+            print('Use a proper listed value for search type')
+
 
     elif user_input.lower() == 'custom' or user_input.lower() == 'c':
         low = int(input('What would you like the lower limit to be? > '))
         high = int(input('What would you like the upper limit to be? > '))
-        guesses = int(input('How many guesses would you like the computer to have? >'))
-        search_type = int(input('Computer search type, 1 for random, 2 for smart random >'))
-        computer_game(low, high, guesses, search_type)
+        guesses = int(input('How many guesses would you like the computer to have? > '))
+        search_type = int(input('Computer search type, 1 for random, 2 for smart random > '))
+        if type(low) == int and type(high) == int and type(guesses) == int and type(search_type) == int:
+            if search_type == 1 or search_type == 2:
+                computer_game(low, high, guesses, search_type)
+            else:
+                print('Use a proper listed value for search type')
+        else:
+            print('Input was not expected please use whole numbers')
+    else:
+        print('Input was not expected, please answer the question correctly')
 
 
 def computer_game(lower, upper, guesses, search_type=2):
