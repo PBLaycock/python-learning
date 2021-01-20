@@ -89,7 +89,7 @@ def computer_game_setup():
     elif user_input.lower() == 'custom' or user_input.lower() == 'c':
         low = int(input('What would you like the lower limit to be? > '))
         high = int(input('What would you like the upper limit to be? > '))
-        guesses = int(input('How many guesses would you like? >'))
+        guesses = int(input('How many guesses would you like the computer to have? >'))
         search_type = int(input('Computer search type, 1 for random, 2 for smart random >'))
         computer_game(low, high, guesses, search_type)
 
@@ -111,12 +111,12 @@ def computer_game(lower, upper, guesses, search_type=2):
         else:
             if computer_guess > random_num:
                 print(f'Guess of {computer_guess} is too high, computer has {guesses - tries} tries left')
-                if current_high < computer_guess:
+                if current_high > computer_guess:
                     current_high = computer_guess
 
             if computer_guess < random_num:
-                print(f'Guess pf {computer_guess}is too low, computer has {guesses - tries} tries left')
-                if current_low > computer_guess:
+                print(f'Guess of {computer_guess} is too low, computer has {guesses - tries} tries left')
+                if current_low < computer_guess:
                     current_low = computer_guess
         tries += 1
 
